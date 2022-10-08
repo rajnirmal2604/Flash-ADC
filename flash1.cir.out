@@ -1,0 +1,58 @@
+* c:\users\public\flash1\flash1.cir
+
+.include avsd_opamp.sub
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__pnp.model.spice"
+.lib "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130.lib.spice" tt
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__diode_pd2nw_11v0.model.spice"
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__r+c.model.spice"
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__inductors.model.spice"
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__diode_pw2nd_11v0.model.spice"
+.include "C:\Users\Public\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__linear.model.spice"
+* u1  net-_u1-pad1_ net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ net-_u1-pad9_ net-_u1-pad10_ net-_u1-pad11_ raj_priority_encoder
+* u3  net-_u1-pad9_ net-_u1-pad10_ net-_u1-pad11_ vout1 vout2 vout3 dac_bridge_3
+* s c m o d e
+v4 vref gnd  dc 5
+x1 net-_x1-pad1_ net-_x1-pad2_ net-_sc3-pad1_ vin net-_u2-pad1_ gnd avsd_opamp
+x2 net-_x1-pad1_ net-_x1-pad2_ net-_sc4-pad1_ vin net-_u2-pad2_ gnd avsd_opamp
+x3 net-_x1-pad1_ net-_x1-pad2_ net-_sc5-pad1_ vin net-_u2-pad3_ gnd avsd_opamp
+x4 net-_x1-pad1_ net-_x1-pad2_ net-_sc6-pad1_ vin net-_u2-pad4_ gnd avsd_opamp
+x5 net-_x1-pad1_ net-_x1-pad2_ net-_sc1-pad2_ vin net-_u2-pad5_ gnd avsd_opamp
+x6 net-_x1-pad1_ net-_x1-pad2_ net-_sc1-pad1_ vin net-_u2-pad6_ gnd avsd_opamp
+x7 net-_x1-pad1_ net-_x1-pad2_ net-_sc2-pad1_ vin net-_u2-pad7_ gnd avsd_opamp
+x8 net-_x1-pad1_ net-_x1-pad2_ net-_sc8-pad1_ vin net-_u2-pad8_ gnd avsd_opamp
+v2 net-_x1-pad1_ gnd  dc 4
+v3 net-_x1-pad2_ gnd  dc -5
+xsc3 net-_sc3-pad1_ vref ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc4 net-_sc4-pad1_ net-_sc3-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc5 net-_sc5-pad1_ net-_sc4-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc6 net-_sc6-pad1_ net-_sc5-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc7 net-_sc1-pad2_ net-_sc6-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc1 net-_sc1-pad1_ net-_sc1-pad2_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc2 net-_sc2-pad1_ net-_sc1-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+xsc8 net-_sc8-pad1_ net-_sc2-pad1_ ? sky130_fd_pr__res_generic_pd L=5.2 W=1
+* u4  vout1 plot_v1
+* u5  vout2 plot_v1
+* u6  vout3 plot_v1
+* u2  net-_u2-pad1_ net-_u2-pad2_ net-_u2-pad3_ net-_u2-pad4_ net-_u2-pad5_ net-_u2-pad6_ net-_u2-pad7_ net-_u2-pad8_ net-_u1-pad8_ net-_u1-pad7_ net-_u1-pad6_ net-_u1-pad5_ net-_u1-pad4_ net-_u1-pad3_ net-_u1-pad2_ net-_u1-pad1_ adc_bridge_8
+v1 vin gnd  dc 5
+a1 [net-_u1-pad1_ net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ ] [net-_u1-pad9_ net-_u1-pad10_ net-_u1-pad11_ ] u1
+a2 [net-_u1-pad9_ net-_u1-pad10_ net-_u1-pad11_ ] [vout1 vout2 vout3 ] u3
+a3 [net-_u2-pad1_ net-_u2-pad2_ net-_u2-pad3_ net-_u2-pad4_ net-_u2-pad5_ net-_u2-pad6_ net-_u2-pad7_ net-_u2-pad8_ ] [net-_u1-pad8_ net-_u1-pad7_ net-_u1-pad6_ net-_u1-pad5_ net-_u1-pad4_ net-_u1-pad3_ net-_u1-pad2_ net-_u1-pad1_ ] u2
+* Schematic Name:                             raj_priority_encoder, NgSpice Name: raj_priority_encoder
+.model u1 raj_priority_encoder(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+* Schematic Name:                             dac_bridge_3, NgSpice Name: dac_bridge
+.model u3 dac_bridge(out_low=0.3 out_high=1 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             adc_bridge_8, NgSpice Name: adc_bridge
+.model u2 adc_bridge(in_low=2.8 in_high=3.5 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+.tran 0.001e-00 5e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(vout1)
+plot v(vout2)
+plot v(vout3)
+.endc
+.end
